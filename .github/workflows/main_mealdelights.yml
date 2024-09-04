@@ -62,4 +62,5 @@ jobs:
           app-name: 'MealDelights'
           slot-name: 'Production'
           package: .
+          startup-command: 'npm start'
           
