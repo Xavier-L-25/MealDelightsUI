@@ -11,13 +11,13 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
 
       - name: Set up Node.js version
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: '20.x'
 
@@ -26,12 +26,15 @@ jobs:
           npm install
           npm run build --if-present
           npm run test --if-present
-      
+
+      - name: Zip artifact for deployment
+        run: zip release.zip ./* -r
+
       - name: Upload artifact for deployment job
-        uses: actions/upload-artifact@v4.3.5
+        uses: actions/upload-artifact@v4
         with:
           name: node-app
-          path: .
+          path: release.zip
 
   deploy:
     runs-on: ubuntu-latest
@@ -47,19 +50,22 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: node-app
+
+      - name: Unzip artifact for deployment
+        run: unzip release.zip
       
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_86A7086DBA6C4E8E85B11DB1569D6B98 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_12DBBB7DC519462EA4DB623F5867A4BB }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_0B54F0337FD4426AB8788C47A01ABA13 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_C47421FE688B43C49B32E96A0FB2713A }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_0E223E3222094A589BDE88CFA977CEE3 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_AC850761D3864DA795F5DFD2BF429D04 }}
 
       - name: 'Deploy to Azure Web App'
-        uses: azure/webapps-deploy@v3
         id: deploy-to-webapp
+        uses: azure/webapps-deploy@v3
         with:
           app-name: 'MealDelights'
           slot-name: 'Production'
-          package: .
+          package: ./build
           
