@@ -57,7 +57,6 @@ const Login = () => {
               />
             </label>
           </div>
-
           <div>
             <p>Password</p>
             <label className="input input-bordered flex items-center gap-2">
@@ -83,14 +82,12 @@ const Login = () => {
               />
             </label>
           </div>
-
           <div className="form-control">
             <label className="label justify-normal">
               <input className="checkbox" type="checkbox" name="rememberMe" />
               <span className="ps-1">Remember me</span>
             </label>
           </div>
-
           <button className="btn block mx-auto w-44" type="submit">
             Submit
           </button>
