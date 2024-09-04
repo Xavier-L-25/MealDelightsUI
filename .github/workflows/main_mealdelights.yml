@@ -61,5 +61,5 @@ jobs:
         with:
           app-name: 'MealDelights'
           slot-name: 'Production'
-          package: ./build/server/index.js
+          package: .
           
