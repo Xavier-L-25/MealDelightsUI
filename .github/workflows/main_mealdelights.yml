@@ -47,6 +47,9 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: node-app
+
+      - name: npm start
+        run: npm run start
       
       - name: Login to Azure
         uses: azure/login@v2
