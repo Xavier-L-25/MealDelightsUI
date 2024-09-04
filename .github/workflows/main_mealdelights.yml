@@ -62,4 +62,11 @@ jobs:
           app-name: 'MealDelights'
           slot-name: 'Production'
           package: .
+          app-settings: |
+            [
+              {
+                "name": "STARTUP_COMMAND",
+                "value": "npm start"
+              }
+            ]
           
