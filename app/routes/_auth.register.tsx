@@ -50,7 +50,6 @@ const Register = () => {
               />
             </label>
           </div>
-
           <div>
             <p>Password</p>
             <label className="input input-bordered flex items-center gap-2">
@@ -76,7 +75,6 @@ const Register = () => {
               />
             </label>
           </div>
-
           <div>
             <p>Confirm Password</p>
             <label className="input input-bordered flex items-center gap-2">
@@ -102,7 +100,6 @@ const Register = () => {
               />
             </label>
           </div>
-
           <button className="btn block mx-auto w-44" type="submit">
             Submit
           </button>
