@@ -55,10 +55,6 @@ jobs:
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_12DBBB7DC519462EA4DB623F5867A4BB }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_0B54F0337FD4426AB8788C47A01ABA13 }}
 
-      - name: Set startup command to 'npm start'
-        run: |
-          az webapp config set --resource-group RG-MealDelightUI --name MealDelights --startup-file "npm start"
-
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v3
         id: deploy-to-webapp
